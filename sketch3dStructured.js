@@ -98,7 +98,7 @@ function draw(){
 
   //dwmatio
   fill(255,240,245);
-  translate(0,0,200);
+  translate(0,0,0);
   stroke(0);
   box(2000);
 
