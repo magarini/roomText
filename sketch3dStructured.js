@@ -17,16 +17,14 @@ let thoughts = ['Σε στίβες',
 'Και μας κοροϊδεύουν.',
 ];
 
-let pg;
-let pg2;
-let pg3;
+
 
 let randomLine=0;
 let randomPosX=0;
 let randomPosY=0;
 let randomPosZ=0;
 
-let pgs=[];
+let pg=[];
 let pgsPositions={
   x:0,
   y:0,
@@ -34,26 +32,28 @@ let pgsPositions={
   rotation:0
 }
 
+let pgX=[];
+let pgY=[];
+let pgZ=[]
+let pgRotY=[];
+
 let pgPositonArray=[];
 
 function setup() {
     
     let canvas=createCanvas(windowWidth,windowHeight,WEBGL)
 
-  pg = createGraphics(200, 50);
-  pg.textSize(16);
 
-  pg2 = createGraphics(200, 50);
-  pg2.textSize(16);
-
-  pg3 = createGraphics(200, 50);
-  pg3.textSize(16);
 
   
 for (i=0;i<=thoughts.length;i++){
 pg[i]=createGraphics(200, 50);
 pg[i].textSize(16);
 pg[i].text(thoughts[i], 0, 24);
+pgX[i]=getRandomIntInclusive(-500, 500);
+pgY[i]=getRandomIntInclusive(-500, 500);
+pgZ[i]=getRandomIntInclusive(-500, 500);
+pgRotY[i]=getRandomIntInclusive(-500, 500);
 
 }
 
@@ -66,36 +66,7 @@ function draw(){
     orbitControl();
 
 
-//text
-push();
-noStroke();
-translate(randomPosX,-randomPosY,-randomPosZ);
 
-
-pg.text(thoughts[randomLine], 0, 24);
-texture(pg);
-plane(200,50);
-pop();
-
-//text
-push();
-noStroke();
-pg2.text('infront', 0, 24);
-texture(pg2);
-translate(200,200,-200);
-plane(200,50);
-
-pop();
-
-//text
-push();
-noStroke();
-pg3.text('behind', 0, 24);
-texture(pg3);
-translate(200,-100,-300);
-plane(200,50);
-
-pop();
 
 
 
@@ -106,14 +77,14 @@ pop();
   box(1800);
 
 
-  for (i=0;i<=randomLine;i++){
+  for (i=0;i<=thoughts.length;i++){
     // setTimeout(function(){
 
       push();
       noStroke();
-      rotateY(randomPosY)
+      rotateY(pgRotY[i]);
       texture(pg[i]);
-      translate(i*randomPosX,i*randomPosY,i*randomPosZ);
+      translate( pgX[i],pgY[i],pgZ[i]);
       plane(200,50);
       
       pop();
@@ -123,27 +94,11 @@ pop();
 setInterval(newPlane,4000);
 
 function newPlane(){
-randomLine=getRandomIntInclusive(0, thoughts.length);
-pg.clear();
-const myArray = thoughts[randomLine].split("");
-let newPlaneWidth=myArray.length*50;
-
-let newPg = createGraphics(newPlaneWidth, 50);
-//text
-push();
-// noStroke();
-translate(randomPosX,randomPosY,randomPosZ);
-
-
-newPg.text(thoughts[randomLine], 0, 100);
-texture(newPg);
-plane(newPlaneWidth,50);
-pop();
-
-
-randomPosX=getRandomIntInclusive(-200, 200);
-randomPosY=getRandomIntInclusive(-200, 200);
-randomPosZ=getRandomIntInclusive(-200, 200);
+  for (i=0;i<=random(thoughts.length);i++){
+  pgX[i]=getRandomIntInclusive(-500, 500);
+  pgY[i]=getRandomIntInclusive(-500, 500);
+  pgZ[i]=getRandomIntInclusive(-500, 500);
+    }
 }
 
 function getRandomIntInclusive(min, max) {
@@ -155,12 +110,3 @@ function getRandomIntInclusive(min, max) {
 
 
 
-class PoetryLine{
-constructor(){
-this.x=random(width);
-this.y=random(height);
-this.z=random(-400,400);
-this.rotationY=random(-360,360);
-this.text=thoughts[getRandomIntInclusive(0, thoughts.length)];
-}
-}
