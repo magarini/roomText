@@ -1,20 +1,42 @@
-let thoughts = ['Σε στίβες',
-'πολλές στρώσεις από ζουμερά',
-'που βγάζουνε αφρούς',
-'Ξέρουν, ότι είναι μόνο σχηματάκια κάτω από τον χάρτη του υγρού,',
-'κοιτάνε σαν ψάρια από κοντά',
-'Και τα βλέπω που κοιτάνε τον αδένα μου',
-'Γιατί πάνε να ξεφύγουν από μέσα τα καλώδια',
-'Από τα σφιχτά',
-'Ίσως αν χαλάσει να ξέρει πως να ξαναγίνει',
-'λίγο έξω από την τρύπα',
-'Εκεί στο μεταξύ,',
-'και αγγίζουν τις συνδέσεις',
-'στεριές, από μακριά, δίνουν φιλάκια',
-'καταβράχηκαν μέχρι έξω από τα σάλια',
-'που τα κολλάνε μεταξύ τους,',
-'που τα κολλάνε μεταξύ τους',
-'Και μας κοροϊδεύουν.',
+let thoughts = ['overthinking',
+'in my room',
+'I’m supposed to be ',
+'insulated from the outside',
+'but i keeps calling me ',
+'to make decisions',
+'it calls me to know',
+'what’s going on',
+'i will never know',
+'trying to find ',
+'new approaches to',
+'what i was always looking for',
+'trying to stop thinking for a little',
+'staring at the ceiling ',
+'my walls souround me',
+'enclosing me from',
+'can we pause',
+'can i access my feelings',
+'can i have 3 mins of',
+'quietness',
+'in my room',
+'I’m supposed to be ',
+'insulated from the outside',
+'but i keeps calling me ',
+'to make decisions',
+'it calls me to know',
+'what’s going on',
+'i will never know',
+'trying to find ',
+'new approaches to',
+'what i was always looking for',
+'trying to stop thinking for a little',
+'staring at the ceiling ',
+'my walls souround me',
+'enclosing me from',
+'can we pause',
+'can i access my feelings',
+'can i have 3 mins of',
+'quietness',
 ];
 
 
@@ -25,19 +47,20 @@ let randomPosY=0;
 let randomPosZ=0;
 
 let pg=[];
-let pgsPositions={
-  x:0,
-  y:0,
-  z:0,
-  rotation:0
-}
+
 
 let pgX=[];
 let pgY=[];
 let pgZ=[]
 let pgRotY=[];
+let planeWidth=[];
 
-let pgPositonArray=[];
+let font;
+
+function preload() {
+  font = loadFont('Poppins-Regular.ttf');
+}
+
 
 function setup() {
     
@@ -47,9 +70,11 @@ function setup() {
 
   
 for (i=0;i<=thoughts.length;i++){
-pg[i]=createGraphics(200, 50);
-pg[i].textSize(16);
-pg[i].text(thoughts[i], 0, 24);
+pg[i]=createGraphics(300, 50);
+pg[i].textSize(24);
+pg[i].text(thoughts[i], 0, 30);
+pg[i].textFont(font);
+
 pgX[i]=getRandomIntInclusive(-500, 500);
 pgY[i]=getRandomIntInclusive(-500, 500);
 pgZ[i]=getRandomIntInclusive(-500, 500);
@@ -73,19 +98,19 @@ function draw(){
 
   //dwmatio
   fill(255,240,245);
-  //translate(0,0,200);
-  box(1800);
+  translate(0,0,200);
+  stroke(0);
+  box(2000);
 
 
   for (i=0;i<=thoughts.length;i++){
-    // setTimeout(function(){
 
       push();
       noStroke();
       rotateY(pgRotY[i]);
       texture(pg[i]);
       translate( pgX[i],pgY[i],pgZ[i]);
-      plane(200,50);
+      plane(300,50);
       
       pop();
     }
@@ -98,6 +123,7 @@ function newPlane(){
   pgX[i]=getRandomIntInclusive(-500, 500);
   pgY[i]=getRandomIntInclusive(-500, 500);
   pgZ[i]=getRandomIntInclusive(-500, 500);
+
     }
 }
 
