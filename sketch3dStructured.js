@@ -18,25 +18,23 @@ let thoughts = ['overthinking',
 'can i access my feelings',
 'can i have 3 mins of',
 'quietness',
-'in my room',
-'I’m supposed to be ',
-'insulated from the outside',
-'but i keeps calling me ',
-'to make decisions',
-'it calls me to know',
-'what’s going on',
-'i will never know',
-'trying to find ',
-'new approaches to',
-'what i was always looking for',
-'trying to stop thinking for a little',
-'staring at the ceiling ',
-'my walls souround me',
-'enclosing me from',
-'can we pause',
-'can i access my feelings',
-'can i have 3 mins of',
-'quietness',
+
+'we turn our thoughts to the internet',
+'we direct our thoughts to this space',
+'which breaks into a thousand pieces',
+'that each one has in her pocket',
+'my thoughts so deep in your pocket',
+'that you may never find them',
+
+'the presence of my friends is an idea',
+'which is materialized on the internet',
+'I open the messenger and touch your voicemail',
+
+'many messages remain on the doorstep',
+'of the digital bubble that surrounds me',
+'my fingers will not touch them',
+'I leave them intangible in the cloud around my head ',
+
 ];
 
 
@@ -71,7 +69,7 @@ function setup() {
   
 for (i=0;i<=thoughts.length;i++){
 pg[i]=createGraphics(300, 50);
-pg[i].textSize(24);
+pg[i].textSize(20);
 pg[i].text(thoughts[i], 0, 30);
 pg[i].textFont(font);
 
